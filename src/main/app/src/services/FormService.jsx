@@ -1,0 +1,15 @@
+import axios from 'axios'; 
+
+const EMPLOYEE_BASE_REST_API_URL = 'http://localhost:8040/api/v1/registration/save';
+const EMPLOYEE_BASE_REST_API_URL_2 = 'http://localhost:8040/api/all';
+
+class FormService{
+
+    createFormulaire(formulaire){
+        return axios.post(EMPLOYEE_BASE_REST_API_URL, formulaire);
+    }
+    getAllInformations(){
+        return axios.get(EMPLOYEE_BASE_REST_API_URL_2);
+    }
+}
+export default new FormService();
