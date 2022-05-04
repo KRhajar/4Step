@@ -29,7 +29,7 @@ export default function NavBar() {
 
   useEffect(()=>{
     axios.get(url.url + '/current-user').then(res => setUser(res.data)).catch(err => console.log("USER NOT LOGGED"))
-  })
+  }, [])
  
 
   return (

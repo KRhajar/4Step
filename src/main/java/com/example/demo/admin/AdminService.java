@@ -60,15 +60,16 @@ public class AdminService {
 
 
     @Transactional
-    public String confirmCoach(String token) {
+    public void confirmCoach(String token) {
         ConfirmationToken confirmationToken = confirmationTokenService
                 .getToken(token)
                 .orElseThrow(() ->
                         new IllegalStateException("token not found"));
 
+        /*
         if (confirmationToken.getConfirmedAt() != null) {
             throw new IllegalStateException("email already confirmed");
-        }
+        }*/
 
         LocalDateTime expiredAt = confirmationToken.getExpiresAt();
 
@@ -79,7 +80,6 @@ public class AdminService {
         confirmationTokenService.setConfirmedAt(token);
         appUserService.enableAppUser(
                 confirmationToken.getAppUser().getEmail());
-        return "<form method='POST'><input type='text' hidden value='" + token + "' /><input type='text' name='password'/><input type='submit' value='change'/></form>";
 
     }
 

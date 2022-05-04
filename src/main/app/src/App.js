@@ -6,9 +6,12 @@ import Form from './components/Sections/Form';
 import Register from './components/Sections/Register';
 import Login from './components/Sections/Login';
 import Layout from './components/Sections/Layout';
+import ConfirmCoach from './components/Sections/ConfirmCoach';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Confirm from './components/Sections/EmailConfirmation';
 import RequirdAuth from './components/Sections/RequireAuth';
+
 function App() {
   return (
     <div>
@@ -22,6 +25,7 @@ function App() {
         <Route path="/login/:userToken" element={<Login />} ></Route>
         <Route path="/confirm" element={<Confirm />}></Route>
         <Route path="form" element={<Form />}></Route>
+        <Route path="/confirmcoach" element={<ConfirmCoach />}></Route>
         <Route  element={<RequirdAuth/>}>
         </Route>
       </Route>

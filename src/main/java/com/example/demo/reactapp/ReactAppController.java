@@ -17,7 +17,7 @@ public class ReactAppController {
 
     private final AppUserRepository appUserRepository;
 
-    @GetMapping(value = {"/", "/form"})
+    @GetMapping(value = {"/", "/form", "/confirmcoach"})
     public String getHome(){
         return "index.html";
     }

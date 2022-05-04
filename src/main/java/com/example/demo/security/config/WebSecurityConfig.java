@@ -31,6 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and().formLogin().loginPage("/login").usernameParameter("email").defaultSuccessUrl("/").permitAll()
         .and();
         http.authorizeRequests().antMatchers("/entrepreneur/**", "/form").authenticated();
+
     }
 
     @Override
