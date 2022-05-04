@@ -28,7 +28,9 @@ public class ReactAppController {
         if (authentication.getPrincipal() instanceof AppUser){
             return "redirect:/";
         }else {
+            
             return "index.html";
+
         }
     }
 
