@@ -40,9 +40,9 @@ public class ReactAppController {
         if (loggedUser instanceof AppUser){
             return ResponseEntity.ok().body((AppUser) loggedUser);
         }else {
-            AppUser appUser = this.appUserRepository.findByEmail("hajar@gmail.com").get();
-            return ResponseEntity.ok().body(appUser);
-            //return ResponseEntity.status(403).build();
+//            AppUser appUser = this.appUserRepository.findByEmail("hajar@gmail.com").get();
+//            return ResponseEntity.ok().body(appUser);
+            return ResponseEntity.status(403).build();
         }
     }
 }

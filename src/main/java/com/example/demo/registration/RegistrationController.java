@@ -5,6 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @RestController
 @RequestMapping(path = "api/v1/registration")
 @AllArgsConstructor
@@ -18,9 +21,13 @@ public class RegistrationController {
         return registrationService.register(request);
     }
 
-    @PostMapping(path = "{userToken}")
-    public String confirm(@PathVariable("userToken")  String token) {
+   @GetMapping(path = "{userToken}")
+   // @PostMapping("confirm")
+    public String  confirm(@PathVariable("userToken")  String token, HttpServletResponse httpServletResponse
+    ) throws IOException {
+       httpServletResponse.sendRedirect("/login");
         return registrationService.confirmToken(token);
+
     }
 
 }
