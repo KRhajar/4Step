@@ -21,11 +21,11 @@ public class RegistrationController {
         return registrationService.register(request);
     }
 
-   @GetMapping(path = "{userToken}")
-   // @PostMapping("confirm")
+    @GetMapping(path = "{userToken}")
+    // @PostMapping("confirm")
     public String  confirm(@PathVariable("userToken")  String token, HttpServletResponse httpServletResponse
     ) throws IOException {
-       httpServletResponse.sendRedirect("/login");
+        httpServletResponse.sendRedirect("/login");
         return registrationService.confirmToken(token);
 
     }
