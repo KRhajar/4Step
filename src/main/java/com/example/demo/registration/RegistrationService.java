@@ -39,7 +39,7 @@ public class RegistrationService {
             return ResponseEntity.ok(true);
         }
         else{
-        String link = "http://localhost:8040/login/" + token;
+        String link = "http://localhost:3000/login/" + token;
         emailSender.send(
                 request.getEmail(),
                 buildEmail(request.getFirstName(), link));
