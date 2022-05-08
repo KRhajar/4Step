@@ -10,6 +10,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller @AllArgsConstructor
 @CrossOrigin(origins = "*" )
@@ -42,9 +44,33 @@ public class ReactAppController {
         if (loggedUser instanceof AppUser){
             return ResponseEntity.ok().body((AppUser) loggedUser);
         }else {
-//            AppUser appUser = this.appUserRepository.findByEmail("hajar@gmail.com").get();
-//            return ResponseEntity.ok().body(appUser);
-            return ResponseEntity.status(403).build();
+          AppUser appUser = this.appUserRepository.findByEmail("hajar@gmail.com").get();
+         return ResponseEntity.ok().body(appUser);
+       //     return ResponseEntity.status(403).build();
         }
     }
+    @PutMapping("/edit-user")
+    public ResponseEntity<AppUser> updateCurrentUser(@RequestBody AppUser appUser){
+
+
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+     Object loggedUser = authentication.getPrincipal();
+
+
+
+
+          return ResponseEntity.ok().body((AppUser) loggedUser);
+
+
+
+
+
+
+
+
+
+
+    }
+
+
 }
