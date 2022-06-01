@@ -18,6 +18,9 @@ class UserServices {
         return axios.post(url + "/" + userToken);
     }
 
+    getEntreprenneurById(employeeId) {
+        return axios.get("http://localhost:8040/api/v1/registration/pro" + "/" + employeeId);
+    }
     
 }
 export default new UserServices();

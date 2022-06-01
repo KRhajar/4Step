@@ -39,9 +39,7 @@ const Formulaire = () => {
         }
         if(!values.telephone) {
             errors.telephone = "Ce champ est obligatoire";
-        } else if(!regex2.test(values.telephone)){
-            errors.telephone = "Le format Télephone portable n'est pas valide";
-        }
+        } 
         if(!values.ville) {
             errors.ville = "Ce champ est obligatoire";
         }

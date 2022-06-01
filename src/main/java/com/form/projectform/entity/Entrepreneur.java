@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Entrepreneur {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-public  int id ;
+public  Long id ;
     @NotNull
 public String email;
 
@@ -41,11 +41,11 @@ public String description;
 
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,7 +1,7 @@
 import axios from 'axios'; 
 
 const EMPLOYEE_BASE_REST_API_URL = 'http://localhost:8040/api/v1/registration/save';
-const EMPLOYEE_BASE_REST_API_URL_2 = 'http://localhost:8040/api/all';
+const EMPLOYEE_BASE_REST_API_URL_2 = 'http://localhost:8040/api/v1/registration/entrepreneur';
 
 class FormService{
 

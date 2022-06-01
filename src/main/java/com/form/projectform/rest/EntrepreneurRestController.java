@@ -3,6 +3,7 @@ package com.form.projectform.rest;
 import com.form.projectform.entity.Entrepreneur;
 import com.form.projectform.service.EntrepreneurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
@@ -13,8 +14,10 @@ import java.util.List;
 @RequestMapping(path = "api/v1/registration")
 @CrossOrigin("*")
 public class EntrepreneurRestController {
-@Autowired
+    @Autowired
     EntrepreneurService entrepreneurService;
+
+
 //@GetMapping("/index")
 //    public String viewHomePage(Model model){
 //    List<Entrepreneur> entrepreneurList=entrepreneurService.findAllEntropreneurs();
@@ -45,16 +48,31 @@ public class EntrepreneurRestController {
 
         return entrepreneurService.findAllEntropreneurs();
     }
+    @GetMapping("/all")
+    public ResponseEntity<List> getAllInformations(){
 
+        List<Entrepreneur> entrepreneur=  entrepreneurService.findAllEntropreneurs();
+        return ResponseEntity.ok(entrepreneur);
+
+    }
+    @GetMapping(value = "pro/{employeeId}")
+    public ResponseEntity<Entrepreneur> getEmployeeById(@PathVariable("employeeId") Long employeeId){
+        Entrepreneur entrepreneur=entrepreneurService.findEntrepreneurById(employeeId);
+
+
+        return ResponseEntity.ok(entrepreneur);
+    }
     @PostMapping("/save")
     public Entrepreneur saveEntrepreneur( @RequestBody Entrepreneur entrepreneur) throws MessagingException, UnsupportedEncodingException {
-    entrepreneur.setId(0);
-    entrepreneurService.saveEntrepreneur(entrepreneur);
+        entrepreneur.setId(0L);
+        entrepreneurService.saveEntrepreneur(entrepreneur);
 
-    return entrepreneur;
+        return entrepreneur;
     }
 
 }
+
+
 
 
 
