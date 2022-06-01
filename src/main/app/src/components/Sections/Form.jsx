@@ -1,24 +1,21 @@
 import React,{useState , useEffect} from 'react'
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import {TextField,Button} from '@material-ui/core'
-import FormService from "../../services/FormService";
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import form1 from "../../assets/img/form1.png" 
  
-const Formulaire = () => {
+const Formulaire = (props) => {
     const btnstyle={borderRadius:  15, backgroundColor: "#0C6358", color:"white",  textTransform: 'none', width:200, marginTop:50};
-    const initialValues = {email :"", intitlule :"", description: "", nom_prenom:"", ville:"", telephone:"", diplome:"", nom_autre_membre:"", Domaine:""};
-    const [formValues, setformValues] = useState(initialValues);
+    const {formValues, handleChange} = props;
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
 
-    const handleChange = (e) => {
-        const {name,value} = e.target;
-        setformValues({...formValues, [name]:value});
-        console.log(formValues);
-    };
-
-    const handleSubmit = (e) => {
+     const handleSubmit = (e) => {
         e.preventDefault();
-        setFormErrors(validate(formValues));
+        setFormErrors(validate(props.formValues));
         setIsSubmit(true);
     };
 
@@ -26,7 +23,7 @@ const Formulaire = () => {
         console.log(formErrors);
         if(Object.keys(formErrors).length === 0 && isSubmit){
             console.log(formValues);
-            FormService.createFormulaire(formValues)
+            props.nextStep()
                 }
     }, [formErrors])
 
@@ -66,43 +63,62 @@ const Formulaire = () => {
     };
 
   return (
-    <div>
-       
+    <div className="mt-4 mb-4">
         <MDBContainer>
         <form onSubmit={handleSubmit}>
-            <MDBRow className=" justify-content-center offset-md-0 abc shadow-5">
+            <MDBRow className="justify-content-center offset-md-0 abc shadow-5">
                 <MDBCol md="6" onSubmit={handleSubmit} >
                     <div>
                         <h3 className='txt'>Informations personnelles</h3>
-                        <TextField id="standard-basic" name='nom_prenom' value={formValues.nom_prenom} onChange={handleChange} label="Nom et Prénom" fullWidth /> <br></br>
+                        <TextField id="standard-basic" name='nom_prenom' defaultValue={formValues?.nom_prenom} onChange={handleChange} label="Nom et Prénom" fullWidth /> <br></br>
                         <p>{formErrors.nom_prenom}</p>
-                        <TextField id="standard-basic" name='nom_autre_membre' value={formValues.nom_autre_membre} onChange={handleChange} label="Noms + Prénoms autres membres du groupe" fullWidth />
-                        <p></p>
-                        <TextField id="standard-basic" name='telephone' value={formValues.telephone} onChange={handleChange} label="Télephone portable"  fullWidth />   
+                        <TextField id="standard-basic" name='nom_autre_membre' defaultValue={formValues?.nom_autre_membre} onChange={handleChange} label="Noms + Prénoms autres membres du groupe" fullWidth />
+                        <p>{formErrors.nom_autre_membre}</p>
+                        <TextField id="standard-basic" name='telephone' defaultValue={formValues?.telephone} onChange={handleChange} label="Télephone portable"  fullWidth />   
                         <p>{formErrors.telephone}</p>
-                        <TextField id="standard-basic" name='ville' value={formValues.ville} onChange={handleChange} label="Ville"  fullWidth />          
+                        <TextField id="standard-basic" name='ville' defaultValue={formValues?.ville} onChange={handleChange} label="Ville"  fullWidth />          
                         <p>{formErrors.ville}</p>
-                        <TextField id="standard-basic" name='email' value={formValues.email} onChange={handleChange} label="Email"  fullWidth />          
+                        <TextField id="standard-basic" name='email' defaultValue={formValues?.email} onChange={handleChange} label="Email"  fullWidth />          
                         <p>{formErrors.email}</p>
-                        <TextField id="standard-basic" name='diplome' value={formValues.diplome} onChange={handleChange} label="Diplôme" fullWidth />          
+                        <TextField id="standard-basic" name='diplome' defaultValue={formValues?.diplome} onChange={handleChange} label="Diplôme" fullWidth />          
                         <p>{formErrors.diplome}</p>
                     </div>
                 </MDBCol>
-                <MDBCol md="6  ">
+                <MDBCol md="6">
                     <div>
                         <h3 className='txt'>Informations sur le projet</h3>  
-                        <TextField id="standard-basic" name='intitlule' value={formValues.intitlule} onChange={handleChange} label="Intitule du projet"  fullWidth />          
+                        <TextField id="standard-basic" name='intitlule' defaultValue={formValues?.intitlule} onChange={handleChange} label="Intitule du projet"  fullWidth />          
                         <p>{formErrors.intitlule}</p>
-                        <TextField id="standard-basic" name="description" value={formValues.description} onChange={handleChange} label="Brève description de l’idée de l’entreprise"  fullWidth />          
+                        <TextField id="standard-basic" name="description" defaultValue={formValues?.description} onChange={handleChange} label="Brève description de l’idée de l’entreprise"  fullWidth />          
                         <p>{formErrors.description}</p>
-                        <TextField id="standard-basic" name="Domaine" value={formValues.Domaine} onChange={handleChange} label="Domaine du projet de l'entreprise"  fullWidth />  
+                        {/* <TextField id="standard-basic" name="Domaine" defaultValue={formValues.Domaine} onChange={handleChange} label="Domaine du projet de l'entreprise"  fullWidth />   */}
+                        <FormControl variant="standard" fullWidth>
+                            <InputLabel  id="demo-simple-select-standard-label">Domaine du projet de l'entreprise</InputLabel>
+                            <Select
+                            labelId="demo-simple-select-standard-label"
+                            id="demo-simple-select-standard"
+                            name="Domaine"
+                            value={formValues?.Domaine}
+                            onChange={handleChange}
+                            label="Domaine du projet de l'entreprise"
+                            fullWidth
+                            >
+                            <MenuItem value={"Numérique et intelligence artificielle"}>Numérique et intelligence artificielle</MenuItem>
+                            <MenuItem value={"Energies renouvelables et efficacité énergétique"}>Energies renouvelables et efficacité énergétique</MenuItem>
+                            <MenuItem value={"Systèmes automatisés"}>Systèmes automatisés</MenuItem>
+                            <MenuItem value={"Eau et environnement"}>Eau et environnement</MenuItem>
+                            <MenuItem value={"Industrie alimentairet"}>Industrie alimentairet</MenuItem>
+                            </Select>
+                            <MDBRow className="justify-content-md-center mb-0 mt-0">
+                            <img src={form1} className='img-fluid w-50' fullWidth   /> 
+                            </MDBRow>
+                        </FormControl>
                         <p>{formErrors.Domaine}</p>
                     </div>
                 </MDBCol>
-                <div className="text-center">
-                    <Button type='submit'  style={btnstyle}  > Suivant </Button>
+                <div className="text-center mb-3">
+                    <Button type='submit'  style={btnstyle}> Suivant </Button>
                 </div>
-                <br></br><br></br><br></br><br></br>
             </MDBRow>
             </form>
         </MDBContainer>
