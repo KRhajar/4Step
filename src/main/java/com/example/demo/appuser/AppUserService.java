@@ -4,6 +4,7 @@ import com.example.demo.admin.AdminService;
 import com.example.demo.email.EmailSender;
 import com.example.demo.registration.token.ConfirmationToken;
 import com.example.demo.registration.token.ConfirmationTokenService;
+import com.form.projectform.entity.Entrepreneur;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,6 +16,8 @@ import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLOutput;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -108,10 +111,13 @@ public class AppUserService implements UserDetailsService {
     public String addCoach(AppUser appUser)  {
         boolean coatchExists = appUserRepository.findByEmail(appUser.getEmail())
                     .isPresent();
-        if (coatchExists) {
-            throw new IllegalStateException("email already taken");
-        }
 
+        if (coatchExists) {
+            // TODO check of attributes are the same and
+            // TODO if email not confirmed send confirmation email.
+
+            return "exists";
+        }
 //            String encodedPassword = bCryptPasswordEncoder
 //                    .encode(appUser.getPassword());
 
@@ -136,6 +142,13 @@ public class AppUserService implements UserDetailsService {
 
 
     }
+
+    public List<AppUser> findCoach() {
+        List<AppUser> entrepreneurList= appUserRepository.findCoach(AppUserRole.COACH);
+  return entrepreneurList;
+    }
+
+
 //
 //    public String savePass(AppUser appUser) {
 //        boolean coatchExists = appUserRepository.findByEmail(appUser.getEmail())

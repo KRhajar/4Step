@@ -48,6 +48,24 @@ public class EntrepreneurRestController {
 
         return entrepreneurService.findAllEntropreneurs();
     }
+    @PutMapping(path = "{entrepreneurId}")
+    public ResponseEntity<Entrepreneur> editEntrepreneur(@PathVariable("entrepreneurId") Long entrepreneurId,
+                                                 @RequestBody Entrepreneur entrepreneurDetails)
+    {
+        Entrepreneur entrepreneur= entrepreneurService.editEntrepreneur(entrepreneurId,entrepreneurDetails);
+
+        return ResponseEntity.ok(entrepreneur);
+
+    }
+    @PutMapping(path = "/affectation/{coachId}")
+    public ResponseEntity<Entrepreneur> affectation(@PathVariable("coachId") Long coachId,
+                                                         @RequestBody Entrepreneur entrepreneurDetails)
+    {
+        Entrepreneur entrepreneur= entrepreneurService.editEntrepreneur(coachId,entrepreneurDetails);
+
+        return ResponseEntity.ok(entrepreneur);
+
+    }
     @GetMapping("/all")
     public ResponseEntity<List> getAllInformations(){
 
@@ -64,9 +82,7 @@ public class EntrepreneurRestController {
     }
     @PostMapping("/save")
     public Entrepreneur saveEntrepreneur( @RequestBody Entrepreneur entrepreneur) throws MessagingException, UnsupportedEncodingException {
-        entrepreneur.setId(0L);
         entrepreneurService.saveEntrepreneur(entrepreneur);
-
         return entrepreneur;
     }
 

@@ -73,7 +73,7 @@ export default function NavBar() {
                 </MDBDropdownToggle>
                 <MDBDropdownMenu style={{ zIndex: '25000' }}>
                   <MDBDropdownItem>
-                    <MDBDropdownLink  ><a href="/form" activclassname="active" className="link">
+                    <MDBDropdownLink  ><a href="/formulaire" activclassname="active" className="link">
                     Lancer mon projet
 </a></MDBDropdownLink>
                   </MDBDropdownItem>

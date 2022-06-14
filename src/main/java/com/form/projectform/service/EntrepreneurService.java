@@ -11,5 +11,5 @@ public interface EntrepreneurService  {
 public void saveEntrepreneur(Entrepreneur entrepreneur) throws MessagingException, UnsupportedEncodingException;
 public Entrepreneur findEntrepreneurById(Long id);
 public void deleteEntrepreneurById( Long id);
-
+    public Entrepreneur editEntrepreneur( Long id,Entrepreneur entrepreneurDetails);
 }

@@ -7,15 +7,15 @@ import javax.persistence.*;
 @Entity
 @Table(name="entrepreneur")
 public class Entrepreneur {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-public  Long id ;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public  Long id ;
     @NotNull
-public String email;
+    public String email;
 
-public String intitlule;
+    public String intilule;
 
-public String description;
+    public String description;
 
     public String nom_prenom;
 
@@ -28,6 +28,105 @@ public String description;
     public String nom_autre_membre;
 
     public String Domaine;
+
+    public String motivation;
+    public String dev_idee;
+    public String etat="En cours d'étude";
+
+
+    public String innovation;
+    public String duree;
+    public String originalite;
+    public String impact;
+    public String responsabilite;
+    public String perennite;
+    public  Long idCoach ;
+
+    public String getIntilule() {
+        return intilule;
+    }
+
+    public void setIntilule(String intilule) {
+        this.intilule = intilule;
+    }
+
+    public Long getIdCoach() {
+        return idCoach;
+    }
+
+    public void setIdCoach(Long idCoach) {
+        this.idCoach = idCoach;
+    }
+
+    public void setMotivation(String motivation) {
+        this.motivation = motivation;
+    }
+
+    public void setDev_idee(String dev_idee) {
+        this.dev_idee = dev_idee;
+    }
+
+    public void setInnovation(String innovation) {
+        this.innovation = innovation;
+    }
+
+    public void setDuree(String duree) {
+        this.duree = duree;
+    }
+
+    public void setOriginalite(String originalite) {
+        this.originalite = originalite;
+    }
+
+    public void setImpact(String impact) {
+        this.impact = impact;
+    }
+
+    public void setResponsabilite(String responsabilite) {
+        this.responsabilite = responsabilite;
+    }
+
+    public void setPerennite(String perennite) {
+        this.perennite = perennite;
+    }
+
+    public String getMotivation() {
+        return motivation;
+    }
+
+    public String getDev_idee() {
+        return dev_idee;
+    }
+
+    public String getInnovation() {
+        return innovation;
+    }
+
+    public String getDuree() {
+        return duree;
+    }
+
+    public String getOriginalite() {
+        return originalite;
+    }
+
+    public String getImpact() {
+        return impact;
+    }
+
+    public String getResponsabilite() {
+        return responsabilite;
+    }
+
+    public String getPerennite() {
+        return perennite;
+    }
+
+
+
+
+
+
     @Column(updatable = false)
     public String verificationCode;
 
@@ -58,11 +157,11 @@ public String description;
     }
 
     public String getIntitlule() {
-        return intitlule;
+        return intilule;
     }
 
     public void setIntitlule(String intitlule) {
-        this.intitlule = intitlule;
+        this.intilule = intitlule;
     }
 
     public String getDescription() {
@@ -119,5 +218,13 @@ public String description;
 
     public void setDomaine(String domaine) {
         Domaine = domaine;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
     }
 }

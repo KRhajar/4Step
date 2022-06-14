@@ -89,10 +89,36 @@ tbody>tr>td:first-child {
 
 }
 
+.spana {
+  font-size: smaller;
+  color: #2A5298;
+}
+
 tbody>tr>td:nth-child(3) {
 
   color: rgb(52, 97, 192);
   font-weight: bold;
 
 
+}
+
+.picture {
+  height: 50px;
+}
+
+.decor {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+  height: 600px;
+}
+
+.modalBackground {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+.b {
+  width: 35rem;
 }

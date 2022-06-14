@@ -12,7 +12,9 @@ import Confirm from './components/Sections/EmailConfirmation';
 import RequirdAuth from './components/Sections/RequireAuth';
 import Project from './components/Sections/Project';
 import GetAllInformations from './components/Sections/GetAllInformations';
-
+import UserForm from './components/Sections/UserForm';
+import SignInOut from './components/Sections/SignInOut';
+import CreateCoach from './components/Sections/CreateCoach';
 function App() {
   return (
     <div>
@@ -26,10 +28,12 @@ function App() {
           <Route path="/all" element={<GetAllInformations />}></Route>
           <Route path="/login/:userToken" element={<Login />} ></Route>
           <Route path="/confirm" element={<Confirm />}></Route>
-          <Route path="/project/:employeeId" element={<Project />}></Route>
-          <Route path="form" element={<Form />}></Route>
+          <Route path="/project/:entrepreneurId" element={<Project />}></Route>
           <Route path="/confirmcoach" element={<ConfirmCoach />}></Route>
-          
+          <Route path="/form" element={<Form />}></Route>
+          <Route path="/Formulaire" element={<UserForm />}></Route>
+          <Route path="/signinout" element={<SignInOut />}></Route>
+          <Route path="/CreateCoach" element={<CreateCoach />}></Route>
           <Route element={<RequirdAuth />}>
           </Route>
         </Route>

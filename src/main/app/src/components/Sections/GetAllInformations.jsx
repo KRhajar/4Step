@@ -1,6 +1,6 @@
 import React,{useState , useEffect,useRef} from 'react'
 import { MDBDataTableV5 } from 'mdbreact';
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import FormService from "../../services/FormService";
 export default function Basic() {
   var ItemsModels;
@@ -58,7 +58,7 @@ useEffect(() => {
 
   {
     label: 'Etat du projet',
-    field: 'status',
+    field: 'etat',
     sort: 'asc',
     width: 150,
     
@@ -88,7 +88,7 @@ useEffect(() => {
       ville,
       telephone,
       domaine,
-      diplome
+      diplome,etat
       } = item;
      
       const view = 
@@ -98,7 +98,7 @@ useEffect(() => {
       nom_prenom,
       ville,
       telephone,
-      diplome ,
+      diplome , etat,
       view
       };
 });

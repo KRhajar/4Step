@@ -51,7 +51,7 @@ const handleChange = (e) => {
         if(response.data==true){
          
          navigate(location.state?.from?.pathname);
-        //  navigate("/");
+        navigate("/");
         console.log(location.state?.from?.pathname);
         }
         else {
@@ -88,7 +88,7 @@ const handleChange = (e) => {
     <MDBContainer className="b m-5">
       <MDBRow  className=" justify-content-center">
         <MDBCol md="4" className=" c shadow-5" >
-          <form className="a" method="POST" action="/login">
+          <form className="a" method="POST" action="/login" onSubmit={handleSubmit}>
             <Grid align='center'>
               <img src={step} className='picture'/>
             </Grid>            
