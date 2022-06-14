@@ -77,7 +77,7 @@ const handleChange = (e) => {
 
 
 return (
-    <MDBContainer className=" b ">
+    <MDBContainer className=" m ">
       <MDBRow  className=" justify-content-center ">
         <MDBCol  className="c shadow-5" >
           <form className="a" onSubmit={handleSubmit}>

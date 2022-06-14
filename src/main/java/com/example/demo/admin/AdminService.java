@@ -161,18 +161,18 @@ public class AdminService {
                 "</div></div>";
     }
 
-    public Entrepreneur affectation(Long coachId, Entrepreneur entrepreneurDetails) {
-
-        Entrepreneur entrepreneur=appUserService.findbyId(coachId);
-
-        if( entrepreneur.getEtat() !=null
-                && !Objects.equals(entrepreneur.getEtat(),entrepreneurDetails.getEtat()) ){
-            entrepreneur.setEtat(entrepreneurDetails.getEtat());
-        }
-
-
-        return entrepreneur;
-    }
+//    public Entrepreneur affectation(Long coachId, Entrepreneur entrepreneurDetails) {
+//
+//        Entrepreneur entrepreneur=appUserService.findbyId(coachId);
+//
+//        if( entrepreneur.getEtat() !=null
+//                && !Objects.equals(entrepreneur.getEtat(),entrepreneurDetails.getEtat()) ){
+//            entrepreneur.setEtat(entrepreneurDetails.getEtat());
+//        }
+//
+//
+//        return entrepreneur;
+//    }
 
 //    //
 //    public String saveNewPass() {

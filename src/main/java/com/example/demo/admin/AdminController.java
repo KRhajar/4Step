@@ -47,15 +47,15 @@ public class AdminController {
         httpServletResponse.sendRedirect("/login");
     }
 
-    @PutMapping(path = "{coachId}")
-    public ResponseEntity<Entrepreneur> affectation(@PathVariable("coachId") Long coachId,
-                                                         @RequestBody Entrepreneur entrepreneurDetails)
-    {
-        Entrepreneur entrepreneur= adminService.affectation(coachId,entrepreneurDetails);
-
-        return ResponseEntity.ok(entrepreneur);
-
-    }
+//    @PutMapping(path = "{coachId}")
+//    public ResponseEntity<Entrepreneur> affectation(@PathVariable("coachId") Long coachId,
+//                                                         @RequestBody Entrepreneur entrepreneurDetails)
+//    {
+//        Entrepreneur entrepreneur= adminService.affectation(coachId,entrepreneurDetails);
+//
+//        return ResponseEntity.ok(entrepreneur);
+//
+//    }
 //    @PostMapping(path = "/changePass")
 //    public String  addPaas( String tokenCoach) {
 //        return adminService.changePass(tokenCoach);
