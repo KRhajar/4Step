@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/api/v*/registration/**", "/api/login/**","/coach/**").permitAll()
         .and().formLogin().loginPage("/login").usernameParameter("email").defaultSuccessUrl("/").permitAll()
         .and();
-        http.authorizeRequests().antMatchers("/entrepreneur/**", "/form").authenticated();
+        http.authorizeRequests().antMatchers("/entrepreneur/**", "/formulaire").authenticated();
 
     }
 

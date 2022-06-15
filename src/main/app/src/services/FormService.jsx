@@ -1,7 +1,7 @@
 import axios from 'axios'; 
 
 const EMPLOYEE_BASE_REST_API_URL = 'http://localhost:8040/api/v1/registration/save';
-const EMPLOYEE_BASE_REST_API_URL_2 = 'http://localhost:8040/api/all';
+const EMPLOYEE_BASE_REST_API_URL_2 = 'http://localhost:8040/api/v1/registration/entrepreneur';
 
 class FormService{
 
@@ -10,6 +10,16 @@ class FormService{
     }
     getAllInformations(){
         return axios.get(EMPLOYEE_BASE_REST_API_URL_2);
+    }
+    updateForm(entrepreneurId, entrepreneur) {
+        return axios.put("http://localhost:8040/api/v1/registration" + "/" + entrepreneurId, entrepreneur)
+
+
+    }
+    affecter(coachId, entrepreneur) {
+        return axios.put("http://localhost:8040/coach/affecatation" + "/" + coachId, entrepreneur)
+
+
     }
 }
 export default new FormService();

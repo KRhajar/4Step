@@ -9,6 +9,7 @@ import com.example.demo.email.EmailService;
 import com.example.demo.registration.EmailValidator;
 import com.example.demo.registration.token.ConfirmationToken;
 import com.example.demo.registration.token.ConfirmationTokenService;
+import com.form.projectform.entity.Entrepreneur;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -20,6 +21,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 @Service
@@ -32,7 +34,7 @@ public class AdminService {
     private final EmailValidator emailValidator;
 
 
-    public String addCoach(AdminRequest request) {
+    public ResponseEntity<Boolean>  addCoach(AdminRequest request) {
         boolean isValidEmail = emailValidator.
                 test(request.getEmail());
 
@@ -49,13 +51,19 @@ public class AdminService {
                 )
         );
 
-        String link = "http://localhost:8040/coach/changePass?token=" + token;
-        emailSender.send(
-                request.getEmail(),
-                buildEmail(request.getFirstName(), link));
+        if(token=="exists"){
+            return ResponseEntity.ok(true);
+        }
+        else{
+            String link = "http://localhost:8040/coach/changePass?token=" + token;
+            emailSender.send(
+                    request.getEmail(),
+                    buildEmail(request.getFirstName(), link));
+
+            return ResponseEntity.ok(false);}
 
 
-        return token;
+
     }
 
 
@@ -152,6 +160,19 @@ public class AdminService {
                 "\n" +
                 "</div></div>";
     }
+
+//    public Entrepreneur affectation(Long coachId, Entrepreneur entrepreneurDetails) {
+//
+//        Entrepreneur entrepreneur=appUserService.findbyId(coachId);
+//
+//        if( entrepreneur.getEtat() !=null
+//                && !Objects.equals(entrepreneur.getEtat(),entrepreneurDetails.getEtat()) ){
+//            entrepreneur.setEtat(entrepreneurDetails.getEtat());
+//        }
+//
+//
+//        return entrepreneur;
+//    }
 
 //    //
 //    public String saveNewPass() {

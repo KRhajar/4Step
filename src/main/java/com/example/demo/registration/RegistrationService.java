@@ -39,10 +39,10 @@ public class RegistrationService {
             return ResponseEntity.ok(true);
         }
         else{
-        String link = "http://localhost:3000/login/" + token;
-        emailSender.send(
-                request.getEmail(),
-                buildEmail(request.getFirstName(), link));
+            String link = "http://localhost:8040/api/v1/registration/" + token;
+            emailSender.send(
+                    request.getEmail(),
+                    buildEmail(request.getFirstName(), link));
 
             return ResponseEntity.ok(false);}
     }

@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Objects;
+
 @Service
 public class EntrepreneurServiceImp implements EntrepreneurService{
 
@@ -49,6 +52,33 @@ String  mailContent="<p>Dear<br>"+entrepreneur.getNom_prenom()+", you just fille
         helper.setText(mailContent,true);
         mailSender.send(message);
 
+    }
+    @Transactional
+    public Entrepreneur editEntrepreneur(Long entrepreneurId,Entrepreneur entrepreneurDetails) {
+
+        Entrepreneur entrepreneur=entrepreneurRepository.findById(entrepreneurId).get();
+
+        if( entrepreneur.getEtat() !=null
+                && !Objects.equals(entrepreneur.getEtat(),entrepreneurDetails.getEtat()) ){
+            entrepreneur.setEtat(entrepreneurDetails.getEtat());
+        }
+
+
+        return entrepreneur;
+    }
+
+    @Transactional
+    public Entrepreneur affectation(Long entrepreneurId,Entrepreneur entrepreneurDetails) {
+
+        Entrepreneur entrepreneur=entrepreneurRepository.findById(entrepreneurId).get();
+
+        if( entrepreneur.getIdCoach() !=null
+                && !Objects.equals(entrepreneur.getIdCoach(),entrepreneurDetails.getIdCoach()) ){
+            entrepreneur.setIdCoach(entrepreneurDetails.getIdCoach());
+        }
+
+
+        return entrepreneur;
     }
 
     @Override
