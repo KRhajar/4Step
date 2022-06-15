@@ -28,7 +28,7 @@ function App() {
           <Route path="form" element={<Form />}></Route>
           <Route path="/confirmcoach" element={<ConfirmCoach />}></Route>
           <Route path="/profile" element={<Profile />} />
-          <Route path="/editprofile" element={<EditProfile />} />
+          <Route path="/editprofile/:id" element={<EditProfile />} />
           <Route element={<RequirdAuth />}></Route>
         </Route>
       </Routes>

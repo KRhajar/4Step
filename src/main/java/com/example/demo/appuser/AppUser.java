@@ -30,6 +30,7 @@ public class AppUser implements UserDetails {
             strategy = GenerationType.SEQUENCE,
             generator = "student_sequence"
     )
+
     private Long id;
     private String firstName;
     private String lastName;
@@ -89,9 +90,11 @@ public class AppUser implements UserDetails {
     public void setFirstName(String firstName){
         this.firstName=firstName;
     }
-    public void setLastName(String firstName){
+
+    public void setLastName(String lastName){
         this.lastName=lastName;
-    }public void setEmail(String email){
+    }
+    public void setEmail(String email){
         this.email=email;
     }
 
