@@ -41,7 +41,6 @@ const EditProfile = () => {
     }
     ProfileService.updateUser(identifiant, user)
       .then((response) => {
-        navigate("/profile");
         console.log("user updated");
         console.log(response.data);
       })
@@ -168,6 +167,9 @@ const EditProfile = () => {
                       onClick={(e) => updateUser(e)}
                     >
                       Save Changes
+                    </button>
+                    <button type="button" className="btn colorlink px-4">
+                      Cancel
                     </button>
                   </div>
                 </div>
