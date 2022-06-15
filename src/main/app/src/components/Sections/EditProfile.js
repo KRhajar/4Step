@@ -168,9 +168,9 @@ const EditProfile = () => {
                     >
                       Save Changes
                     </button>
-                    <button type="button" className="btn colorlink px-4">
+                    <Link className="btn colorlink padding" to={`/profile`}>
                       Cancel
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -28,8 +28,8 @@ function App() {
           <Route path="/login/:userToken" element={<Login />}></Route>
           <Route path="/confirm" element={<Confirm />}></Route>
           <Route path="/form" element={<Form />}></Route>
-          <Route path="/profile" element={<EditProfile />}></Route>
-          <Route path="/editprofile/:id" element={<Profile />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/editprofile/:id" element={<EditProfile />}></Route>
           <Route path="/confirmcoach" element={<ConfirmCoach />}></Route>
           <Route element={<RequirdAuth />}></Route>
         </Route>
