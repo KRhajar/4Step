@@ -67,13 +67,13 @@ String  mailContent="<p>Dear<br>"+entrepreneur.getNom_prenom()+", you just fille
         return entrepreneur;
     }
 
+
     @Transactional
     public Entrepreneur affectation(Long entrepreneurId,Entrepreneur entrepreneurDetails) {
 
         Entrepreneur entrepreneur=entrepreneurRepository.findById(entrepreneurId).get();
 
-        if( entrepreneur.getIdCoach() !=null
-                && !Objects.equals(entrepreneur.getIdCoach(),entrepreneurDetails.getIdCoach()) ){
+        if( !Objects.equals(entrepreneur.getIdCoach(),entrepreneurDetails.getIdCoach()) ){
             entrepreneur.setIdCoach(entrepreneurDetails.getIdCoach());
         }
 

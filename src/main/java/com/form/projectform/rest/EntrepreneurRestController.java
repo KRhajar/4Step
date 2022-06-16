@@ -1,12 +1,17 @@
 package com.form.projectform.rest;
 
 import com.form.projectform.entity.Entrepreneur;
+import com.form.projectform.exporter.ExcelFileService;
 import com.form.projectform.service.EntrepreneurService;
+import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -16,7 +21,8 @@ import java.util.List;
 public class EntrepreneurRestController {
     @Autowired
     EntrepreneurService entrepreneurService;
-
+    @Autowired
+    private ExcelFileService excelFileService;
 
 //@GetMapping("/index")
 //    public String viewHomePage(Model model){
@@ -57,11 +63,11 @@ public class EntrepreneurRestController {
         return ResponseEntity.ok(entrepreneur);
 
     }
-    @PutMapping(path = "/affectation/{coachId}")
-    public ResponseEntity<Entrepreneur> affectation(@PathVariable("coachId") Long coachId,
+    @PutMapping(path = "/affectation/{projectId}")
+    public ResponseEntity<Entrepreneur> affectation(@PathVariable("projectId") Long projectId,
                                                          @RequestBody Entrepreneur entrepreneurDetails)
     {
-        Entrepreneur entrepreneur= entrepreneurService.editEntrepreneur(coachId,entrepreneurDetails);
+        Entrepreneur entrepreneur= entrepreneurService.affectation(projectId,entrepreneurDetails);
 
         return ResponseEntity.ok(entrepreneur);
 
@@ -85,7 +91,15 @@ public class EntrepreneurRestController {
         entrepreneurService.saveEntrepreneur(entrepreneur);
         return entrepreneur;
     }
+    @GetMapping("/downloadExcelFile")
+    public void downloadExcelFile(HttpServletResponse response) throws IOException {
 
+        ByteArrayInputStream byteArrayInputStream = excelFileService.export();
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-Disposition", "attachment; filename=projets.xlsx");
+        IOUtils.copy(byteArrayInputStream, response.getOutputStream());
+
+    }
 }
 
 

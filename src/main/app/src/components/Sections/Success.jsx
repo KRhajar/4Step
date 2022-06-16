@@ -1,5 +1,5 @@
 import React from 'react';
-
+import email from "../../assets/img/formConfirm.jpg" 
  
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 
@@ -17,7 +17,7 @@ export default function Success() {
             </div>
         </MDBCol>
         <MDBCol size='md' className='col-example text-center' >
-        
+        <img src={email} alt="" className='img-fluid'/>
         </MDBCol>
       </MDBRow>
      </MDBContainer>

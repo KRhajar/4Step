@@ -45,8 +45,8 @@
       const [motivation, setMotivation] = useState("");
       const [etat, setEtat] = useState("");
       const [a, setA] = useState("");
-      const initialValues = {etat: ""};
       const [erreur, setErreur] = useState("");
+      
       const handleChange = (e) => {
         
         console.log(e.target.value)
@@ -58,17 +58,28 @@
       const [b, setB] = React.useState(false);
       const [coach, setCoach] = React.useState(false);
       const UpdateForm = (e) => {
-       
-        setB(true)
+      
         if(a=="En cours d'étude"){
-         setOpen(true)
+          if(etat=="En cours d'étude" ){
+            setErreur("Le projet est dèja En cours d'étude " )
+          }
+          else if(etat=="Incubé"){
+            setB(true)
+          }
+          else{
+            setOpen(true)
+          }
+         
         }
 
         if(a=="Convoqué"){
           if(etat=="En cours d'étude"){
-             
-            setErreur("vous pouvez pas aller")
+           
+            setErreur("Impossible de revenir à l'état: "+etat)
             
+          }
+          else if(etat=="Convoqué" ){
+            setErreur("Le projet est dèja Convoqué " )
           }
           else if(etat=="Incubé"){
             setB(true)
@@ -79,10 +90,13 @@
         }
         else if(a=="Près incubée"){
           if(etat=="En cours d'étude" || etat=="Convoqué"){
-            setErreur("vous pouvez pas aller " )
+            setErreur("Impossible de revenir à l'état: "+etat)
           }
           else if(etat=="Incubé"){
             setB(true)
+          }
+          else if(etat=="Près incubée" ){
+            setErreur("Le projet est dèja Près Incubé " )
           }
           else{
             setOpen(true)
@@ -92,13 +106,17 @@
           if(etat=="Refusé" ){
             setOpen(true)
           }
+          else if(etat=="Incubé" ){
+            setErreur("Le projet est dèja incubé " )
+          }
           else{
-            setErreur("vous pouvez pas aller " )
+            setErreur("Impossible de revenir à l'état: "+etat)
           }
         }
         else if(a=="Refusé"){
+          
           if(etat!="Refusé" ){
-            setErreur("vous pouvez pas aller,Le projet est refusé " )
+            setErreur("Impossible de revenir à l'état: "+etat+", Le projet est refusé " )
           }
           
         }
@@ -114,19 +132,12 @@
        
        
        }
-      const handleToClose = () => {
-        const projet = { etat };
-    console.log(projet);
-  
-      FormService.updateForm(entrepreneurId, projet);
-    setA(etat);
-        setOpen(false);
-        setB(false);
-        setCoach(false);
-      };
+      
       const closeCoach = () => {
    
         setCoach(false);
+      
+        
       };
       useEffect(() => {
         if (entrepreneurId) {
@@ -194,15 +205,17 @@
      getCoachs();
      
     },[coachs.length])
+    
   const setting = () => {
      
     ItemsModels = coachs.map(item => {
       const { firstName,id
       } = item;
       
-      console.log(ItemsModels)
+      
+      
       const view = 
-      <Button className='btn btn-info' onClick={(e) =>affecter(e) }>Affecter</Button>;
+      <Button className='btn btn-info' onClick={(e) =>affecter(e,id) }>Affecter</Button>;
     
       return{ firstName,
       view
@@ -214,11 +227,28 @@
     rows: ItemsModels,
   })
 }
-const affecter = (e) => {
- 
+
+const affecter = (e,id) => {
+  const user ={idCoach: id};
+  FormService.affecter(entrepreneurId,user)
+ setOpen(true)
 
 }
+const handleToClose = () => {
+  setErreur("");
+  const projet = { etat };
 
+
+
+setA(etat);
+  setOpen(false);
+  setB(false);
+  setCoach(false);
+  FormService.updateForm(entrepreneurId, projet);
+  
+
+  
+};
       return (
         <div>
         
@@ -347,7 +377,7 @@ const affecter = (e) => {
                                 <MenuItem value={"Refusé"}>Refusé</MenuItem> <br/>
                                 </Select>
         </div>  
-        <p>{erreur}  </p>
+        <p className="error">{erreur}  </p>
         <div className="text-center mb-3">
                         <Button type='submit' style={btnstyle} onClick={(e) => UpdateForm(e)} > Confirmer la modification </Button>
                     </div>
@@ -402,11 +432,7 @@ const affecter = (e) => {
 
             </DialogContent>
             <DialogActions>
-            <Button 
-                      color="primary" autoFocus>
-                        Créer un coach
-                
-              </Button>
+            
               <Button onClick={closeCoach} 
                       color="primary" autoFocus>
                 Close

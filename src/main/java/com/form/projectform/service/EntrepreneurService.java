@@ -12,4 +12,5 @@ public void saveEntrepreneur(Entrepreneur entrepreneur) throws MessagingExceptio
 public Entrepreneur findEntrepreneurById(Long id);
 public void deleteEntrepreneurById( Long id);
     public Entrepreneur editEntrepreneur( Long id,Entrepreneur entrepreneurDetails);
+    public Entrepreneur affectation( Long id,Entrepreneur entrepreneurDetails);
 }

@@ -2,9 +2,14 @@ import React, { useState,useEffect } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import { TextField,Grid,Button,Typography, Link} from '@material-ui/core'
 import step from "../../assets/img/4step.png";
-
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
 import { useInRouterContext, useNavigate } from 'react-router-dom';
 import UserServices from "../../services/UserServices";
+import ConfirmCoach from './EmailConfirmation';
 
  export default function CreateCoach(){
   const btnstyle={borderRadius:  15, backgroundColor: "#0C6358", color:"white",  textTransform: 'none'};
@@ -67,7 +72,8 @@ const handleChange = (e) => {
                 setErrorMessage("Email existe dèja!")
               }
              else{
-               navigate("/confirm")
+               setErrorMessage("")
+               setCoach("Coach crée")
              }
          
       })
@@ -75,9 +81,13 @@ const handleChange = (e) => {
     }
   }, [formErrors]);
 
-
+  const [coach, setCoach] = React.useState(false);
+  const handleToClose = () => {
+    
+    setCoach(false);
+  };
 return (
-    <MDBContainer className=" m ">
+    <div>    <MDBContainer className=" m ">
       <MDBRow  className=" justify-content-center ">
         <MDBCol  className="c shadow-5" >
           <form className="a" onSubmit={handleSubmit}>
@@ -118,11 +128,14 @@ return (
             </div>
             <br></br>
             <p className="error">{errorMessage}</p>
+            <p className="error">{coach}</p>
           
           </form>
         </MDBCol>
       </MDBRow>
     </MDBContainer>
+    
+          </div>
   );
 };
 

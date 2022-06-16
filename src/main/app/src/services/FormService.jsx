@@ -16,8 +16,8 @@ class FormService{
 
 
     }
-    affecter(coachId, entrepreneur) {
-        return axios.put("http://localhost:8040/coach/affecatation" + "/" + coachId, entrepreneur)
+    affecter(projectId, entrepreneur) {
+        return axios.put("http://localhost:8040/api/v1/registration/affectation" + "/" + projectId, entrepreneur)
 
 
     }

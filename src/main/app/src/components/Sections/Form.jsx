@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-
+import form1 from "../../assets/img/form1.png"
 
 const Form = (props) => {
     const btnstyle={borderRadius:  15, backgroundColor: "#0C6358", color:"white",  textTransform: 'none', width:200, marginTop:50};
@@ -109,7 +109,7 @@ const Form = (props) => {
                             </Select>
                             <p style={{ color:'red' }}>{formErrors.Domaine}</p>
                             <MDBRow className="justify-content-md-center mb-0 mt-0">
-                            
+                            <img src={form1} className='img-fluid w-50' fullWidth   /> 
                             </MDBRow>
                         </FormControl>
                     </div>

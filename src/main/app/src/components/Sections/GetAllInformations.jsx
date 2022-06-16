@@ -2,6 +2,8 @@ import React,{useState , useEffect,useRef} from 'react'
 import { MDBDataTableV5 } from 'mdbreact';
 import { Link } from 'react-router-dom'
 import FormService from "../../services/FormService";
+import UserService from "../../services/UserServices";
+import {MDBBtn } from 'mdb-react-ui-kit';
 export default function Basic() {
   var ItemsModels;
   const myContainer = useRef(null);
@@ -108,6 +110,19 @@ useEffect(() => {
     rows: ItemsModels,
   })
 }
+const download = (e) => {
+  UserService.downloadExcelFile();
+  
+};
+  return (
+     
+    <div className=' m-3 ' ><MDBDataTableV5  hover entriesOptions={[5,10,20, 25]} entries={5} pagesAmount={4} data={datatable} /> 
+    
+        <a href="http://localhost:8040/api/v1/registration/downloadExcelFile" className='btn btn-info'>Télecharger le fichier Excel des projets</a>
 
-  return <div className=' m-3 ' ><MDBDataTableV5  hover entriesOptions={[5,10,20, 25]} entries={5} pagesAmount={4} data={datatable} /></div>;
+  
+    </div> 
+    
+    );
+
 }

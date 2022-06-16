@@ -2,7 +2,7 @@ import React,{useState , useEffect} from 'react'
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import {TextField,Button} from '@material-ui/core'
 import FormService from "../../services/FormService";
-
+import form2 from "../../assets/img/form2.jpg" 
 
 const FormSuiv2 = (props) => {
     
@@ -92,7 +92,7 @@ const FormSuiv2 = (props) => {
                     <TextField id="standard-basic" name='perennite' defaultValue={formValues.perennite} onChange={handleChange} label="Pérennité : potentiel de développement" fullWidth />          
                     <p style={{ color:'red' }}>{formErrors.perennite}</p>
                     <MDBRow className="justify-content-md-center mb-0 mt-0">
-                     
+                    <img src={form2} className='img-fluid w-50' fullWidth   /> 
                     </MDBRow>
                 </div>
                 </MDBCol>
