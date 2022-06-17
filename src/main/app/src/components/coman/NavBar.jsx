@@ -113,9 +113,9 @@ export default function NavBar() {
               </MDBBtn>
             </span>
           )}
-          {
-            <Link to={`/profile`}>
-              user != null &&
+           {user != null && (
+            <Link to={"/profile"}>
+              {" "}
               <span>
                 {" "}
                 <MDBBtn size="sm" rounded outline color="warning">
@@ -123,7 +123,7 @@ export default function NavBar() {
                 </MDBBtn>
               </span>
             </Link>
-          }
+          )}
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>
