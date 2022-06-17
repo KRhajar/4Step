@@ -31,7 +31,6 @@ public class ExcelFileServiceImpl implements ExcelFileService  {
                 CellStyle headerCellStyle = workbook.createCellStyle();
                 headerCellStyle.setFillForegroundColor(IndexedColors.LIGHT_GREEN.getIndex());
 //                headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-
                 // Creating header cells
                 Cell cell = row.createCell(0);
                 cell.setCellValue("Id");

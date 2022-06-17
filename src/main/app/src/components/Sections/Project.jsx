@@ -84,6 +84,9 @@
           else if(etat=="Incubé"){
             setB(true)
           }
+          else if(etat=="Refusé"){
+            setErreur("Le projet ne peut pas etre Refusé ")
+          }
           else{
             setOpen(true)
           }
@@ -98,6 +101,9 @@
           else if(etat=="Près incubée" ){
             setErreur("Le projet est dèja Près Incubé " )
           }
+          else if(etat=="Refusé"){
+            setErreur("Le projet ne peut pas etre Refusé ")
+          }
           else{
             setOpen(true)
           }
@@ -108,6 +114,9 @@
           }
           else if(etat=="Incubé" ){
             setErreur("Le projet est dèja incubé " )
+          }
+          else if(etat=="Refusé"){
+            setErreur("Le projet ne peut pas etre Refusé ")
           }
           else{
             setErreur("Impossible de revenir à l'état: "+etat)

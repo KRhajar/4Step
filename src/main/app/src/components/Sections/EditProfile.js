@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import ProfileService from "../../services/ProfilService";
 
 const EditProfile = () => {
+
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const [email, setemail] = useState("");
