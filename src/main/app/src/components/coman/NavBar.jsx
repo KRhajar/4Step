@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/img/4step.png";
-import { NavLink } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 import url from "./config.json";
 
 import {
