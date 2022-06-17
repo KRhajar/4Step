@@ -43,6 +43,7 @@ const EditProfile = () => {
       .then((response) => {
         console.log("user updated");
         console.log(response.data);
+        navigate("/profile");
       })
       .catch((error) => {
         console.log(error);
