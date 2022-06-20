@@ -36,7 +36,13 @@ public class ProfileController {
         AppUser userUpdate=appUserRepository.findById(id).orElseThrow(()->new ResourceNotFoundExeption("employee with this id deos not exist"+id));
 userUpdate.setFirstName(editRequst.getFirstName());
 userUpdate.setLastName(editRequst.getLastName());
-userUpdate.setPassword(editRequst.getPassword());
+userUpdate.setPassword(userUpdate.getPassword());
+userUpdate.setAppUserRole(userUpdate.getAppUserRole());
+userUpdate.setId(userUpdate.getId());
+userUpdate.setEmail(userUpdate.getEmail());
+
+
+
 appUserRepository.save(userUpdate);
         return ResponseEntity.ok(userUpdate);
 

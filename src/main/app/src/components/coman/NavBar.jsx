@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/img/4step.png";
-import { Link,NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import url from "./config.json";
 
 import {
@@ -103,6 +103,36 @@ export default function NavBar() {
             </MDBDropdown>
           </MDBNavbarNav>
 
+          {/*
+         <MDBDropdown>
+              <MDBDropdownToggle tag="a" className="nav-link h">
+                Accompagnement
+              </MDBDropdownToggle>
+              <MDBDropdownMenu style={{ zIndex: "25000" }}>
+                <MDBDropdownItem>
+                  <MDBDropdownLink>
+                    <a
+                      href="/formulaire"
+                      activclassname="active"
+                      className="link"
+                    >
+                      Lancer mon projet
+                    </a>
+                  </MDBDropdownLink>
+                </MDBDropdownItem>
+                <MDBDropdownItem>
+                  <MDBDropdownLink>
+                    <NavLink
+                      to="/login"
+                      activeclassname="active"
+                      className="link"
+                    >
+                      Suivre mon projet
+                    </NavLink>
+                  </MDBDropdownLink>
+                </MDBDropdownItem>
+              </MDBDropdownMenu>
+            </MDBDropdown> */}
           {user == null && (
             <span>
               {" "}
@@ -113,16 +143,42 @@ export default function NavBar() {
               </MDBBtn>
             </span>
           )}
-           {user != null && (
-            <Link to={"/profile"}>
-              {" "}
-              <span>
+          {user != null && (
+            <MDBDropdown>
+              <MDBDropdownToggle tag="a" className="nav-link h">
                 {" "}
-                <MDBBtn size="sm" rounded outline color="warning">
-                  Bonjours, {user.firstName}
-                </MDBBtn>
-              </span>
-            </Link>
+                <span>
+                  {" "}
+                  <MDBBtn size="sm" rounded outline color="warning">
+                    Bonjours, {user.firstName}
+                  </MDBBtn>
+                </span>
+              </MDBDropdownToggle>
+              <MDBDropdownMenu style={{ zIndex: "25000" }}>
+                <MDBDropdownItem>
+                  <MDBDropdownLink>
+                    <Link
+                      to="/profile"
+                      activclassname="active"
+                      className="link"
+                    >
+                      Profile
+                    </Link>
+                  </MDBDropdownLink>
+                </MDBDropdownItem>
+                <MDBDropdownItem>
+                  <MDBDropdownLink>
+                    <a
+                      href="http://localhost:8040/logout"
+                      activclassname="active"
+                      className="link"
+                    >
+                      Logout
+                    </a>
+                  </MDBDropdownLink>
+                </MDBDropdownItem>
+              </MDBDropdownMenu>
+            </MDBDropdown>
           )}
         </MDBCollapse>
       </MDBContainer>

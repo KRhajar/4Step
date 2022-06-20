@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @AllArgsConstructor
@@ -29,7 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
         .antMatchers("/api/v*/registration/**", "/api/login/**","/coach/**").permitAll()
         .and().formLogin().loginPage("/login").usernameParameter("email").defaultSuccessUrl("/").permitAll()
-        .and();
+        .and()
+         .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");
         http.authorizeRequests().antMatchers("/entrepreneur/**", "/formulaire").authenticated();
 
     }

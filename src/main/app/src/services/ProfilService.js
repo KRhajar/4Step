@@ -9,7 +9,9 @@ class ProfileService {
   }
 
   getUserById(userId) {
-    return axios.get(EMPLOYE_BASE_REST_API_URL_PROFILE_UPDATE + "/" + userId);
+    return axios.get(
+      EMPLOYE_BASE_REST_API_URL_PROFILE_UPDATE + "/" + userId
+    );
   }
   /*
   updateEmployee(employeeId, employee) {
