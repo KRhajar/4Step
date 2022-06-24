@@ -3,10 +3,16 @@ import { Link } from "react-router-dom";
 import "../../styles/Profile.css";
 import { useState, useEffect } from "react";
 import ProfileService from "../../services/ProfilService";
+import { render } from "@testing-library/react";
 
 const Profile = () => {
   const [user, setUser] = useState("");
+  const [rerender, setRerender] = useState(false);
   useEffect(() => {
+    getUserInfo();
+    setRerender(!rerender);
+  }, "");
+  const getUserInfo = () => {
     ProfileService.getUserInfo()
       .then((response) => {
         setUser(response.data);
@@ -15,7 +21,7 @@ const Profile = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, "");
+  };
 
   return (
     <div class="container">
@@ -36,7 +42,7 @@ const Profile = () => {
                         <h6 className="mb-0">Nom</h6>
                       </div>
                       <div className="col-sm-9 text-secondary">
-                        {user.lastName}
+                        {user.firstName}
                       </div>
                     </div>
                     <hr />
@@ -44,9 +50,7 @@ const Profile = () => {
                       <div className="col-sm-3">
                         <h6 className="mb-0">Prenom</h6>
                       </div>
-                      <div class="col-sm-9 text-secondary">
-                        {user.firstName}
-                      </div>
+                      <div class="col-sm-9 text-secondary">{user.lastName}</div>
                     </div>
                     <hr />
                     <div class="row">

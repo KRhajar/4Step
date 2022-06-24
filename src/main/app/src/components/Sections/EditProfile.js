@@ -3,6 +3,7 @@ import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ProfileService from "../../services/ProfilService";
+import axios from "axios";
 
 const EditProfile = () => {
 
@@ -14,7 +15,52 @@ const EditProfile = () => {
   const navigate = useNavigate();
   const [identifiant, setIdentifiant] = useState("");
   const [userr, setUserr] = useState("");
-  const { idi } = useParams();
+  /*const { identifiant } = useParams();*/
+  const handleLogout = () => {
+    axios({
+      method: "post",
+      url: "http://localhost:8040/logout",
+      withCredentials: true,
+    })
+      .catch((error) => console.log("BAD", error))
+      .then((reponse) => {
+        window.location.href = "http://localhost:8040/";
+      });
+  };
+  useEffect(() => {
+    getUserInfo();
+    getUserById();
+  }, []);
+  const getUserInfo = () => {
+    ProfileService.getUserInfo()
+      .then((response) => {
+        console.log(response.data);
+        setIdentifiant(response.data.id);
+
+        setfirstName(response.data.firstName);
+        setlastName(response.data.lastName);
+        setemail(response.data.email);
+        setAppUserRole(response.data.appUserRole);
+        setId(response.data.id);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const getUserById = () => {
+    ProfileService.getUserById(identifiant)
+      .then((response) => {
+        console.log("get user by id");
+        setfirstName(response.data.firstName);
+        setlastName(response.data.lastName);
+        setemail(response.data.email);
+        setAppUserRole(response.data.appUserRole);
+        setId(response.data.id);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   /* const { identifiant } = useParams("");*/
   const updateUser = (e) => {
@@ -38,33 +84,22 @@ const EditProfile = () => {
     let user = { firstName, lastName, email, appUserRole, id };
     if (identifiant) {
       console.log("id is working yay");
-      console.log(idi);
     }
     ProfileService.updateUser(identifiant, user)
       .then((response) => {
         console.log("user updated");
         console.log(response.data);
+        navigate("/profile");
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  useEffect(() => {
-    ProfileService.getUserInfo()
-      .then((response) => {
-        console.log(response.data);
-        setIdentifiant(response.data.id);
 
-        setfirstName(response.data.firstName);
-        setlastName(response.data.lastName);
-        setemail(response.data.email);
-        setAppUserRole(response.data.appUserRole);
-        setId(response.data.id);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, "");
+  /*useEffect(() => {
+   
+  }, []);*/
+
   /*
   useEffect(() => {
     ProfileService.getUserById(identifiant)
@@ -159,8 +194,7 @@ const EditProfile = () => {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-3"></div>
-                  <div className="col-sm-9 text-secondary">
+                  <div className="col text-secondary">
                     <button
                       type="button"
                       className="btn colorlink px-4"
@@ -169,6 +203,8 @@ const EditProfile = () => {
                     >
                       Save Changes
                     </button>
+                  </div>
+                  <div className="col">
                     <Link className="btn colorlink padding" to={`/profile`}>
                       Cancel
                     </Link>
