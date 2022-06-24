@@ -31,6 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/api/v*/registration/**", "/api/login/**","/coach/**").permitAll()
         .and().formLogin().loginPage("/login").usernameParameter("email").defaultSuccessUrl("/").permitAll()
         .and()
+
          .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");
         http.authorizeRequests().antMatchers("/entrepreneur/**", "/formulaire").authenticated();
 

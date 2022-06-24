@@ -17,6 +17,11 @@ import SignInOut from './components/Sections/SignInOut';
 import CreateCoach from './components/Sections/CreateCoach';
 import Profile from "./components/Sections/Profile";
 import EditProfile from "./components/Sections/EditProfile";
+import Dashboard from './components/Sections/Dashboard';
+import AddProject from './components/Sections/AddProject';
+import AddBacklog from './components/Sections/AddBacklog';
+import Comment from './components/Sections/comments';
+import CommentBox from './components/Sections/addComment';
 function App() {
   return (
     <div>
@@ -36,6 +41,12 @@ function App() {
           <Route path="/editprofile/:id" element={<EditProfile />}></Route>
           <Route path="/Formulaire" element={<UserForm />}></Route>
           <Route path="/CreateCoach" element={<CreateCoach />}></Route>
+          <Route path="/logout" element={<Acceuil />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/AddProject" element={<AddProject />}></Route>
+          <Route path="/AddBacklog" element={<AddBacklog />}></Route>
+          <Route path="/comments" element={<Comment />}></Route>
+          <Route path="/addComment" element={<CommentBox />}></Route>
           <Route element={<RequirdAuth />}>
           </Route>
         </Route>
