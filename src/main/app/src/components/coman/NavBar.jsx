@@ -59,11 +59,7 @@ export default function NavBar() {
               </MDBNavbarLink>
               
             </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink><NavLink to="/propos" activeclassname="active" className="link">
- A propos
-</NavLink></MDBNavbarLink>
-            </MDBNavbarItem>
+          
 
             
               <MDBDropdown>
@@ -97,7 +93,7 @@ export default function NavBar() {
           {
             user != null &&
             <span > <MDBBtn size='sm' rounded outline color="warning">
-            Bonjours, {user.firstName}</MDBBtn>
+            Bonjour, {user.firstName}</MDBBtn>
             </span>
           }
          
