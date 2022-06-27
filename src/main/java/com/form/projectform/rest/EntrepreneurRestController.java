@@ -56,8 +56,7 @@ public class EntrepreneurRestController {
     }
     @PutMapping(path = "{entrepreneurId}")
     public ResponseEntity<Entrepreneur> editEntrepreneur(@PathVariable("entrepreneurId") Long entrepreneurId,
-                                                 @RequestBody Entrepreneur entrepreneurDetails)
-    {
+                                                 @RequestBody Entrepreneur entrepreneurDetails) throws MessagingException, UnsupportedEncodingException {
         Entrepreneur entrepreneur= entrepreneurService.editEntrepreneur(entrepreneurId,entrepreneurDetails);
 
         return ResponseEntity.ok(entrepreneur);

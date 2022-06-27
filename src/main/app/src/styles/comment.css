@@ -1,0 +1,65 @@
+
+
+
+button {
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.75em; 
+  display: inline-block;
+  text-decoration: none;
+  
+
+}
+.comment-box {
+  max-width: 37.5rem;
+  color: #fff;
+  background-color: #32a18f;
+  border-radius: 0.875rem;
+  padding: 0.2rem 1rem 2rem;
+  justify-content: center;
+  margin: auto;
+  margin-top: 89px;
+}
+.comment-form {
+  background-color: #fff;
+  border-radius: 0.25rem;
+  margin-bottom: 2rem;
+  padding: 1rem;  
+  
+}
+
+.comment-form-fields {
+  margin-bottom: 0.25rem;
+ 
+  }
+  textarea {
+    font-style: italic;
+  }
+
+.comment-form-actions {
+  
+}
+
+#comment-reveal {
+  float: right;
+  background-color:#114b3b;
+  color: #fff;
+}
+.comment {
+  border-top: 0.125rem solid ;
+}
+.comment-body {
+  font-style: italic;
+  margin-left: 1rem;
+}
+.comment-footer {
+  margin-bottom: 1rem;
+}
+.comment-footer-delete {
+  padding: 0.2rem 0;
+  
+  text-decoration: none;
+ 
+}

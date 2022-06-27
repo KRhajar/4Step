@@ -28,7 +28,6 @@ public class Entrepreneur {
     public String nom_autre_membre;
 
     public String Domaine;
-
     public String motivation;
     public String dev_idee;
     public String etat="En cours d'étude";

@@ -10,6 +10,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller @AllArgsConstructor
 @CrossOrigin(origins = "*" )
@@ -17,7 +20,7 @@ public class ReactAppController {
 
     private final AppUserRepository appUserRepository;
 
-    @GetMapping(value = {"/","propos","/all","/project/**", "/formulaire", "/profile","editprofile/**","/confirmcoach"})
+    @GetMapping(value = {"/","propos","/all","/project/**","/AddProject","/api/project/**", "/formulaire", "/dashboard","/profile","editprofile/**","/confirmcoach"})
     public String getHome(){
         return "index.html";
     }
@@ -46,5 +49,12 @@ public class ReactAppController {
          // return ResponseEntity.ok().body(appUser);
             return ResponseEntity.status(403).build();
         }
+    }
+    @RequestMapping("/default")
+    public String defaultAfterLogin(HttpServletRequest request) {
+        if (request.isUserInRole("ADMIN")) {
+            return "redirect:/all";
+        }
+        return "redirect:/";
     }
 }

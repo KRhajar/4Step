@@ -13,7 +13,7 @@ public class DefaultUser implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        AppUser appUser = new AppUser("Hajar", "El Karroumi", "hajar@gmail.com", "hajar123", AppUserRole.USER);
+        AppUser appUser = new AppUser("Hajar", "El Karroumi", "hajar@gmail.com", "$2a$10$Q1X5lxfBb.dkTtxa9WnoPuTxsr2USgVVLopFo3.9UFsoXMX6FKkku", AppUserRole.USER);
         appUser.setId(1L);
         appUser.setEnabled(true);
         try{

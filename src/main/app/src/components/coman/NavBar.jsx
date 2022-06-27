@@ -64,13 +64,7 @@ export default function NavBar() {
                 </NavLink>
               </MDBNavbarLink>
             </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink>
-                <NavLink to="/propos" activeclassname="active" className="link">
-                  A propos
-                </NavLink>
-              </MDBNavbarLink>
-            </MDBNavbarItem>
+            
 
             <MDBDropdown>
               <MDBDropdownToggle tag="a" className="nav-link h">

@@ -6,17 +6,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @AllArgsConstructor
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(
+        prePostEnabled = true,
+        securedEnabled = true,
+        jsr250Enabled = true
+)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final AppUserService appUserService;
@@ -28,12 +33,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.authorizeRequests()
-        .antMatchers("/api/v*/registration/**", "/api/login/**","/coach/**").permitAll()
-        .and().formLogin().loginPage("/login").usernameParameter("email").defaultSuccessUrl("/").permitAll()
-        .and()
-
-         .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");
-        http.authorizeRequests().antMatchers("/entrepreneur/**", "/formulaire").authenticated();
+                .antMatchers("/api/v*/registration/*", "/api/login/","/coach/*").hasRole("user")
+                .and().formLogin().loginPage("/login").usernameParameter("email").defaultSuccessUrl("/default").permitAll()
+                .and();
+        http.authorizeRequests().antMatchers("/entrepreneur/**","/api/project/**","/api/backlog/**", "/formulaire","/dashboard").hasAuthority("USER")
+                .and().authorizeRequests().antMatchers("/all","/confirmcoach" ,"/CreateCoach").hasAuthority("ADMIN");
 
     }
 
